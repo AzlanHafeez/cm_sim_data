@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CUTE MARKHOR | SIM DATA BASE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Cyber Intelligence Platform | Created by Arslan-MD">
+    
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #9d00ff;
+            --neon-pink: #ff00ff;
+            --matrix-green: #00ff41;
+            --cyber-yellow: #ffd300;
+            --dark-bg: #0a0a0a;
+            --terminal-bg: #001100;
+            --panel-bg: rgba(0, 20, 0, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Matrix Rain Effect - Light Version */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Main Container */
+        .cyber-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header - Terminal Style */
+        .terminal-header {
+            background: var(--panel-bg);
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        .cyber-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .creator-tag {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--cyber-yellow);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .cyber-btn {
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+        .cyber-btn:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .cyber-btn::before {
+            content: '>> ';
+            font-weight: bold;
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Search Panel */
+        .search-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--matrix-green);
+            padding: 25px;
+            position: relative;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .panel-title::before {
+            content: '[>';
+            color: var(--matrix-green);
+            font-weight: bold;
+        }
+
+        .cyber-input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--cyber-yellow);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .important-note {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid var(--cyber-yellow);
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .important-note strong {
+            color: var(--cyber-yellow);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .important-note p {
+            color: #ffffff;
+            margin: 3px 0;
+        }
+
+        .cyber-input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--matrix-green);
+            color: var(--matrix-green);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+            font-family: monospace;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        .cyber-input:focus {
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+            border-color: var(--neon-blue);
+        }
+
+        .execute-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #ff0080, #9d00ff);
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .execute-btn:hover {
+            background: linear-gradient(45deg, #9d00ff, #ff0080);
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .execute-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Instruction Panel */
+        .instruction-panel {
+            background: rgba(0, 20, 40, 0.5);
+            border: 1px solid var(--neon-blue);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .instruction-title {
+            color: var(--neon-blue);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instruction-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .instruction-list li {
+            color: #ffffff;
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .instruction-list li::before {
+            content: '▶';
+            color: var(--matrix-green);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Loading Animation */
+        .cyber-loader {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+            margin: 20px 0;
+        }
+
+        .hacker-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--neon-blue);
+            border-right: 3px solid var(--neon-purple);
+            border-bottom: 3px solid var(--neon-pink);
+            border-left: 3px solid var(--matrix-green);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--neon-blue);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Error Panel */
+        .error-panel {
+            display: none;
+            background: linear-gradient(145deg, rgba(255, 0, 0, 0.08), rgba(139, 0, 0, 0.15));
+            border: 1px solid #ff0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .error-icon {
+            font-size: 2rem;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .error-title {
+            color: #ff0000;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .results-header {
+            background: var(--panel-bg);
+            border: 1px solid var(--neon-pink);
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+
+        .results-title {
+            font-size: 1.3rem;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+        }
+
+        .results-count {
+            font-size: 0.95rem;
+            color: var(--cyber-yellow);
+            background: rgba(255, 0, 255, 0.15);
+            padding: 6px 15px;
+            border: 1px solid var(--neon-pink);
+            border-radius: 20px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Cyber Card */
+        .cyber-card {
+            background: linear-gradient(145deg, rgba(0, 20, 0, 0.8), rgba(0, 0, 20, 0.8));
+            border: 1px solid var(--neon-blue);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 243, 255, 0.2);
+            border-color: var(--neon-pink);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--neon-blue); 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-badge {
+            background: var(--matrix-green);
+            color: black;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 12px;
+        }
+
+        .data-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 2px solid var(--cyber-yellow);
+            border-radius: 3px;
+        }
+
+        .data-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 243, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .data-label {
+            font-size: 0.8rem;
+            color: var(--cyber-yellow);
+            margin-bottom: 2px;
+        }
+
+        .data-value {
+            font-size: 0.95rem;
+            color: white;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        /* Footer */
+        .cyber-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 1px solid var(--neon-purple);
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--neon-pink);
+        }
+
+        .copyright {
+            color: var(--cyber-yellow);
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        /* Glitch Effect - Light */
+        .glitch {
+            position: relative;
+        }
+
+        /* Terminal Blink */
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Warning Text */
+        .warning-text {
+            color: #ff6666;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cyber-title {
+                font-size: 1.5rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-panel {
+                padding: 20px;
+            }
+            
+            .cyber-input {
+                font-size: 0.95rem;
+                padding: 12px;
+            }
+            
+            .execute-btn {
+                padding: 14px;
+                font-size: 1rem;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .creator-tag {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cyber-container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cyber-title {
+                font-size: 1.3rem;
+            }
+            
+            .panel-title {
+                font-size: 1.1rem;
+            }
+            
+            .cyber-card {
+                padding: 15px;
+            }
+            
+            .data-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .data-icon {
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrixCanvas"></canvas>
+    
+    <div class="cyber-container">
+        <!-- Terminal Header -->
+        <header class="terminal-header">
+            <h1 class="cyber-title glitch">
+                CUTE MARKHOR OFFICIAL
+            </h1>
+            
+            <div class="creator-tag">
+                <span class="blink">>>_</span>
+                <span>CREATED BY: AZLAN HAFEEZ</span>
+                <span class="blink">_<<</span>
+                
+                <div class="social-buttons">
+                    <a href="https://youtube.com/@cutemarkhor" target="_blank" class="cyber-btn">
+                        YOUTUBE
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B923319863027&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" class="cyber-btn">
+                        OWNER
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029VbAPgH78PgsENxv1Ej43" target="_blank" class="cyber-btn">
+                        WHATSAPP
+                    </a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 10px; color: var(--matrix-green); font-family: monospace; font-size: 0.85rem;">
+                <span class="blink">[</span> ADVANCED PAK SIM DATA BASE <span class="blink">]</span>
+            </div>
+        </header>
+        
+        <!-- Main Dashboard -->
+        <div class="dashboard">
+            <!-- Search Panel -->
+            <div class="search-panel">
+                <h2 class="panel-title">
+                    TARGET ACQUISITION
+                </h2>
+                
+                <div class="cyber-input-group">
+                    <label class="input-label">
+                        <span class="blink">></span> ENTER TARGET PHONE NUMBER:
+                    </label>
+                    
+                    <div class="important-note">
+                        <strong>⚠️ IMPORTANT:</strong>
+                        <p>Enter number WITHOUT country code (0)</p>
+                        <p>Example: 3319863027 (NOT 03001234567)</p>
+                    </div>
+                    
+                    <input type="text" 
+                           id="targetNumber" 
+                           class="cyber-input" 
+                           placeholder="Enter number (without 0)"
+                           maxlength="15">
+                </div>
+                
+                <div class="instruction-panel">
+                    <div class="instruction-title">
+                        <span class="blink">📌</span> CORRECT FORMAT:
+                    </div>
+                    <ul class="instruction-list">
+                        <li>3001234567 (10 digits)</li>
+                        <li>3001234567 (10 digits)</li>
+                        <li>923001234567 (12 digits)</li>
+                    </ul>
+                    <div class="warning-text">
+                        <span class="blink">❌</span> WRONG: 03001234567, +923001234567
+                    </div>
+                </div>
+                
+                <button class="execute-btn" onclick="initiateScan()">
+                    <span class="blink">[</span> SEARCH DATA <span class="blink">]</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Loading Animation -->
+        <div class="cyber-loader" id="cyberLoader">
+            <div class="hacker-spinner"></div>
+            <div class="loader-text">
+                ACCESSING DATABASE...
+            </div>
+            <div style="margin-top: 15px; color: var(--matrix-green); font-family: monospace; font-size: 0.85rem;">
+                <span class="blink">></span> Decrypting intelligence data...
+            </div>
+        </div>
+        
+        <!-- Error Panel -->
+        <div class="error-panel" id="errorPanel">
+            <div class="error-icon">
+                ⚠️
+            </div>
+            <h3 class="error-title" id="errorTitle">
+                SYSTEM ERROR
+            </h3>
+            <p style="color: #ff6666; text-align: center; font-size: 0.95rem;" id="errorMessage">
+                Unable to establish connection with intelligence database.
+            </p>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 class="results-title">
+                    <span class="blink">[</span> INTELLIGENCE REPORT <span class="blink">]</span>
+                </h2>
+                <div class="results-count" id="resultsCount">
+                    0 TARGETS IDENTIFIED
+                </div>
+            </div>
+            
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="cyber-footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">PRIVACY</a>
+                <a href="#" class="footer-link">TERMS</a>
+                <a href="#" class="footer-link">API DOCS</a>
+                <a href="https://api.whatsapp.com/send/?phone=%2B923495178663&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" class="footer-link">DEVELOPER</a>
+            </div>
+            
+            <div style="color: var(--neon-blue); margin: 15px 0; font-family: monospace; font-size: 0.85rem;">
+                <span class="blink">></span> CUTE MARKHOR SIM DATA BASE 
+            </div>
+            
+            <div class="copyright">
+                © 2026 CUTE MARKHOR SIM DATA BASE | CREATED BY AZLAN HAFEEZ
+            </div>
+            
+            <div style="color: var(--matrix-green); margin-top: 10px; font-size: 0.75rem; font-family: monospace;">
+                <span class="blink">[</span> Authorized Use Only <span class="blink">]</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix Rain Effect - Light
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = '0101';
+        const fontSize = 12;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 10, 0, 0.03)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Enter key support
+        document.getElementById('targetNumber').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                initiateScan();
+            }
+        });
+        
+        // Format phone number input - REMOVE leading 0 automatically
+        document.getElementById('targetNumber').addEventListener('input', function(e) {
+            // Remove all non-digits
+            let value = this.value.replace(/\D/g, '');
+            
+            // Remove leading 0 if present
+            if (value.startsWith('0')) {
+                value = value.substring(1);
+            }
+            
+            // Limit to 15 digits
+            this.value = value.substring(0, 15);
+            
+            // Show warning if user tries to enter 0
+            if (this.value === '0' || this.value.startsWith('0')) {
+                showWarning();
+            }
+        });
+        
+        function showWarning() {
+            const input = document.getElementById('targetNumber');
+            input.style.borderColor = '#ff0000';
+            input.style.boxShadow = '0 0 10px rgba(255, 0, 0, 0.3)';
+            
+            setTimeout(() => {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            }, 1500);
+        }
+        
+        // Main scanning function
+        async function initiateScan() {
+            let number = document.getElementById('targetNumber').value.trim();
+            const loader = document.getElementById('cyberLoader');
+            const errorPanel = document.getElementById('errorPanel');
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsGrid = document.getElementById('resultsGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            const errorTitle = document.getElementById('errorTitle');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Reset displays
+            errorPanel.style.display = 'none';
+            resultsSection.style.display = 'none';
+            resultsGrid.innerHTML = '';
+            
+            // Remove any remaining non-digits and leading zeros
+            number = number.replace(/\D/g, '');
+            
+            // Validation
+            if(!number) {
+                showError('INPUT REQUIRED', 'Please enter a target phone number for scanning.');
+                return;
+            }
+            
+            if(number.length < 10 || number.length > 15) {
+                showError('INVALID LENGTH', `Number must be 10-15 digits. You entered ${number.length} digits.`);
+                return;
+            }
+            
+            // Check if number starts with 0 (should have been removed)
+            if (number.startsWith('0')) {
+                showError('FORMAT ERROR', 'Remove the leading 0. Enter number without country code.');
+                document.getElementById('targetNumber').value = number.substring(1);
+                return;
+            }
+            
+            // Show loader
+            loader.style.display = 'block';
+            
+            // Simulate scanning process
+            simulateScanning();
+            
+            try {
+                // Actual API call
+                const response = await fetch(`https://arslan-apis.vercel.app/more/database?number=${number}`);
+                const data = await response.json();
+                
+                // Hide loader
+                loader.style.display = 'none';
+                
+                if(!data.status || data.result.length === 0) {
+                    showError('NO DATA FOUND', 'Zero intelligence records found for the specified target.');
+                    return;
+                }
+                
+                // Display results
+                displayIntelligence(data.result);
+                
+            } catch(error) {
+                loader.style.display = 'none';
+                
+                // For demo purposes - show mock data
+                if(['3336678955', '3105551234', '4155557890', '923001234567'].includes(number)) {
+                    displayIntelligence(getMockIntelligence(number));
+                } else {
+                    showError('CONNECTION FAILED', 'Unable to establish secure connection with intelligence servers.');
+                }
+            }
+        }
+        
+        // Simulate scanning animation
+        function simulateScanning() {
+            const loaderText = document.querySelector('.loader-text');
+            const phases = [
+                'DECRYPTING DATA...'
+            ];
+            
+            let phase = 0;
+            const interval = setInterval(() => {
+                if(phase < phases.length) {
+                    loaderText.textContent = phases[phase];
+                    phase++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 600);
+        }
+        
+        // Display intelligence results
+        function displayIntelligence(intelData) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsGrid = document.getElementById('resultsGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            // Update count
+            resultsCount.textContent = `${intelData.length} TARGET${intelData.length !== 1 ? 'S' : ''} IDENTIFIED`;
+            
+            // Create cyber cards
+            intelData.forEach((target, index) => {
+                const card = document.createElement('div');
+                card.className = 'cyber-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span class="blink">></span> ${target.full_name || 'UNKNOWN ENTITY'}
+                        </div>
+                        <div class="card-badge">
+                            #${index + 1}
+                        </div>
+                    </div>
+                    
+                    <div class="data-row">
+                        <div class="data-icon">
+                            📱
+                        </div>
+                        <div>
+                            <div class="data-label">PHONE NUMBER</div>
+                            <div class="data-value">${formatCyberNumber(target.phone)}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-row">
+                        <div class="data-icon">
+                            🆔
+                        </div>
+                        <div>
+                            <div class="data-label">CNIC</div>
+                            <div class="data-value">${target.cnic || 'NOT AVAILABLE'}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-row">
+                        <div class="data-icon">
+                            📍
+                        </div>
+                        <div>
+                            <div class="data-label">ADDRESS</div>
+                            <div class="data-value">${target.address || 'NOT AVAILABLE'}</div>
+                        </div>
+                    </div>
+                `;
+                resultsGrid.appendChild(card);
+            });
+            
+            // Show results
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Show error
+        function showError(title, message) {
+            const errorPanel = document.getElementById('errorPanel');
+            const errorTitle = document.getElementById('errorTitle');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            errorTitle.textContent = title;
+            errorMessage.textContent = message;
+            errorPanel.style.display = 'block';
+            errorPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Format phone number in cyber style
+        function formatCyberNumber(phone) {
+            if(!phone) return 'N/A';
+            const cleaned = phone.toString().replace(/\D/g, '');
+            if(cleaned.length === 10) {
+                return `${cleaned.substring(0, 3)}-${cleaned.substring(3, 6)}-${cleaned.substring(6)}`;
+            }
+            return cleaned;
+        }
+        
+        // Mock intelligence data
+        function getMockIntelligence(number) {
+            const intelligenceDB = {
+                '3336678955': [
+                    {
+                        full_name: 'John Alexander',
+                        phone: '3336678955',
+                        cnic: '42101-1234567-8',
+                        address: 'Lahore, Pakistan'
+                    },
+                    {
+                        full_name: 'John A. Smith',
+                        phone: '3336678955',
+                        cnic: '42101-9876543-2',
+                        address: 'Karachi, Pakistan'
+                    }
+                ],
+                '3105551234': [
+                    {
+                        full_name: 'Sarah Johnson',
+                        phone: '3105551234',
+                        cnic: '35202-4567890-1',
+                        address: 'Islamabad, Pakistan'
+                    }
+                ],
+                '4155557890': [
+                    {
+                        full_name: 'Michael Williams',
+                        phone: '4155557890',
+                        cnic: '37303-5678901-2',
+                        address: 'Faisalabad, Pakistan'
+                    },
+                    {
+                        full_name: 'Mike Williams',
+                        phone: '4155557890',
+                        cnic: '37303-8765432-1',
+                        address: 'Rawalpindi, Pakistan'
+                    }
+                ],
+                '923001234567': [
+                    {
+                        full_name: 'Test User',
+                        phone: '923001234567',
+                        cnic: '42101-1122334-5',
+                        address: 'Pakistan'
+                    }
+                ]
+            };
+            
+            return intelligenceDB[number] || [];
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add focus effect to input
+            const input = document.getElementById('targetNumber');
+            input.addEventListener('focus', function() {
+                if (!this.value) {
+                    this.placeholder = "Example: 300......";
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.placeholder = "Enter number (without 0)";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
