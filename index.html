@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CUTE MARKHOR DATABASE</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+/* Default Red Theme */
+:root {
+  --primary-color: #ff0041;
+  --secondary-color: #ff0088;
+  --dark-bg: #0a0a0e;
+  --glass-bg: rgba(20, 10, 15, 0.6);
+  --glass-border: rgba(255, 0, 65, 0.25);
+  --glow-color: #ff0041;
+  --text-primary: #ff0041;
+  --text-secondary: #ff88aa;
+  --telegram-red: #dc2f2f;
+  --whatsapp-green: #25D366;
+  --card-bg: linear-gradient(145deg, rgba(30, 10, 15, 0.8), rgba(20, 5, 10, 0.8));
+}
+
+/* Theme 1 - Red (Default) */
+.theme-red {
+  --primary-color: #ff0041;
+  --secondary-color: #ff0088;
+  --glow-color: #ff0041;
+  --text-primary: #ff0041;
+  --text-secondary: #ff88aa;
+  --glass-border: rgba(255, 0, 65, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(30, 10, 15, 0.8), rgba(20, 5, 10, 0.8));
+}
+
+/* Theme 2 - Blue */
+.theme-blue {
+  --primary-color: #0088ff;
+  --secondary-color: #00aaff;
+  --glow-color: #0088ff;
+  --text-primary: #0088ff;
+  --text-secondary: #88aaff;
+  --glass-border: rgba(0, 136, 255, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(0, 40, 60, 0.8), rgba(0, 20, 40, 0.8));
+}
+
+/* Theme 3 - Green */
+.theme-green {
+  --primary-color: #00ff88;
+  --secondary-color: #00cc66;
+  --glow-color: #00ff88;
+  --text-primary: #00ff88;
+  --text-secondary: #88ffaa;
+  --glass-border: rgba(0, 255, 136, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(0, 40, 30, 0.8), rgba(0, 20, 20, 0.8));
+}
+
+/* Theme 4 - Purple */
+.theme-purple {
+  --primary-color: #aa00ff;
+  --secondary-color: #cc44ff;
+  --glow-color: #aa00ff;
+  --text-primary: #aa00ff;
+  --text-secondary: #cc88ff;
+  --glass-border: rgba(170, 0, 255, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(50, 0, 70, 0.8), rgba(30, 0, 50, 0.8));
+}
+
+/* Theme 5 - Orange */
+.theme-orange {
+  --primary-color: #ff6600;
+  --secondary-color: #ff8844;
+  --glow-color: #ff6600;
+  --text-primary: #ff6600;
+  --text-secondary: #ffaa88;
+  --glass-border: rgba(255, 102, 0, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(60, 30, 0, 0.8), rgba(40, 20, 0, 0.8));
+}
+
+/* Theme 6 - Cyan */
+.theme-cyan {
+  --primary-color: #00ffff;
+  --secondary-color: #44ffff;
+  --glow-color: #00ffff;
+  --text-primary: #00ffff;
+  --text-secondary: #88ffff;
+  --glass-border: rgba(0, 255, 255, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(0, 60, 60, 0.8), rgba(0, 40, 40, 0.8));
+}
+
+/* Theme 7 - Pink */
+.theme-pink {
+  --primary-color: #ff44aa;
+  --secondary-color: #ff88cc;
+  --glow-color: #ff44aa;
+  --text-primary: #ff44aa;
+  --text-secondary: #ffaacc;
+  --glass-border: rgba(255, 68, 170, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(60, 0, 40, 0.8), rgba(40, 0, 30, 0.8));
+}
+
+/* Theme 8 - Gold */
+.theme-gold {
+  --primary-color: #ffaa00;
+  --secondary-color: #ffcc44;
+  --glow-color: #ffaa00;
+  --text-primary: #ffaa00;
+  --text-secondary: #ffdd88;
+  --glass-border: rgba(255, 170, 0, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(60, 40, 0, 0.8), rgba(40, 25, 0, 0.8));
+}
+
+/* Theme 9 - White */
+.theme-white {
+  --primary-color: #ffffff;
+  --secondary-color: #cccccc;
+  --glow-color: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(80, 80, 80, 0.8), rgba(40, 40, 40, 0.8));
+}
+
+/* Theme 10 - Magenta */
+.theme-magenta {
+  --primary-color: #ff00ff;
+  --secondary-color: #ff88ff;
+  --glow-color: #ff00ff;
+  --text-primary: #ff00ff;
+  --text-secondary: #ffaaff;
+  --glass-border: rgba(255, 0, 255, 0.25);
+  --card-bg: linear-gradient(145deg, rgba(80, 0, 80, 0.8), rgba(50, 0, 50, 0.8));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(var(--primary-color), 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(var(--secondary-color), 0.08) 0%, transparent 50%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+.data-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.data-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 40px rgba(var(--primary-color), 0.3);
+}
+
+.card-icon, .theme-toggle, .menu-toggle {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 30px rgba(var(--primary-color), 0.4);
+}
+
+.search-btn {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.search-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.logo-text, .main-title, .credit-name {
+  color: var(--primary-color);
+  text-shadow: 0 0 20px var(--glow-color);
+}
+
+/* Welcome Popup */
+.welcome-popup {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.4s ease;
+}
+
+.popup-content {
+  background: linear-gradient(145deg, rgba(30, 10, 15, 0.98), rgba(20, 5, 10, 0.98));
+  border: 3px solid var(--primary-color);
+  border-radius: 30px;
+  padding: 40px 35px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(var(--primary-color), 0.5);
+  animation: popupSlide 0.5s ease;
+}
+
+.popup-icon {
+  font-size: 60px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.popup-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.popup-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+.popup-btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.popup-btn.join-wa {
+  background: var(--whatsapp-green);
+  color: white;
+}
+
+.popup-btn.join-tg {
+  background: var(--telegram-red);
+  color: white;
+}
+
+.popup-btn.cancel {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 25px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 20px var(--glow-color);
+  object-fit: cover;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.theme-selector {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.theme-selector:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.theme-toggle, .menu-toggle {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 6px 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 300px;
+  height: 100vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border-left: 1px solid var(--glass-border);
+  z-index: 1001;
+  transition: right 0.4s ease;
+  padding: 70px 25px 25px;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: rgba(var(--primary-color), 0.15);
+  border-color: var(--primary-color);
+}
+
+/* Main Container */
+.container {
+  max-width: 1100px;
+  margin: 100px auto 40px;
+  padding: 0 20px;
+}
+
+.title-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.main-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: 3px;
+}
+
+.version-badge {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+/* Search Box */
+.search-box {
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  border: 2px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 35px;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 16px 22px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--glass-border);
+  border-radius: 15px;
+  color: var(--text-primary);
+  font-size: 17px;
+  font-family: 'Rajdhani', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.search-btn {
+  padding: 16px 35px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  color: var(--primary-color);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.example-text {
+  font-size: 12px;
+  margin-top: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* WhatsApp Banner */
+.whatsapp-banner {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(37, 211, 102, 0.1));
+  border: 2px solid var(--whatsapp-green);
+  border-radius: 18px;
+  padding: 15px 22px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.whatsapp-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.telegram-banner {
+  background: linear-gradient(135deg, rgba(220, 47, 47, 0.2), rgba(185, 28, 28, 0.1));
+  border: 2px solid var(--telegram-red);
+  border-radius: 18px;
+  padding: 15px 22px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.telegram-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 47, 47, 0.3);
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.banner-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+}
+
+.whatsapp-banner .banner-icon {
+  background: var(--whatsapp-green);
+}
+
+.telegram-banner .banner-icon {
+  background: var(--telegram-red);
+}
+
+.banner-info h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+
+.whatsapp-banner .banner-info h3 {
+  color: var(--whatsapp-green);
+}
+
+.telegram-banner .banner-info h3 {
+  color: var(--telegram-red);
+}
+
+.banner-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.banner-btn {
+  color: white;
+  padding: 10px 22px;
+  border-radius: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.whatsapp-banner .banner-btn {
+  background: var(--whatsapp-green);
+}
+
+.telegram-banner .banner-btn {
+  background: var(--telegram-red);
+}
+
+/* Results */
+.results-container {
+  display: none;
+}
+
+.results-container.active {
+  display: block;
+  animation: fadeInUp 0.4s ease;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.data-card {
+  border-radius: 18px;
+  padding: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(var(--primary-color), 0.15);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.card-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.card-value {
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.api-info {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: rgba(var(--primary-color), 0.1);
+  border-radius: 12px;
+  text-align: center;
+  border-left: 3px solid var(--primary-color);
+}
+
+.api-credit {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.loading i {
+  font-size: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  text-align: center;
+  padding: 35px;
+  background: rgba(255, 0, 0, 0.12);
+  border: 2px solid rgba(255, 0, 0, 0.4);
+  border-radius: 18px;
+  color: #ff5555;
+  font-size: 18px;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  padding: 30px 20px;
+  text-align: center;
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+}
+
+.credit-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popupSlide {
+  from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .main-title { font-size: 32px; }
+  .whatsapp-banner, .telegram-banner { flex-direction: column; text-align: center; }
+  .banner-left { justify-content: center; }
+  .input-group { flex-direction: column; }
+  .search-input, .search-btn { width: 100%; }
+  .sidebar { width: 260px; }
+  .data-grid { grid-template-columns: 1fr; }
+  .theme-selector { padding: 4px 8px; font-size: 11px; }
+}
+</style>
+</head>
+
+<body class="theme-red">
+<div class="welcome-popup" id="welcomePopup">
+  <div class="popup-content">
+    <div class="popup-icon"><i class="fas fa-database"></i></div>
+    <h2 class="popup-title">CUTE MARKHOR DATABASE</h2>
+    <p class="popup-text">Premium SIM Database • Fast & Secure<br>Join our Channel for Updates</p>
+    <div class="popup-buttons">
+      <a href="https://whatsapp.com/channel/0029VbAPgH78PgsENxv1Ej43" onclick="openLinkDirect('whatsapp')" class="popup-btn join-wa"><i class="fab fa-whatsapp"></i> JOIN WHATSAPP</a>
+      <a href="t.me/cutemarkhor" onclick="openLinkDirect('telegram')" class="popup-btn join-tg"><i class="fab fa-telegram"></i> JOIN TELEGRAM</a>
+      <button onclick="closePopup()" class="popup-btn cancel">CONTINUE TO APP</button>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="logo-container">
+    <img src="https://b.top4top.io/s_37654s2s20.jpeg" alt="Logo" class="logo-img">
+    <div class="logo-text">CUTE MARKHOR DATABASE</div>
+  </div>
+  <div class="nav-controls">
+    <select class="theme-selector" id="themeSelector" onchange="changeTheme(this.value)">
+      <option value="red">🎨 Red Theme</option>
+      <option value="blue">💙 Blue Theme</option>
+      <option value="green">💚 Green Theme</option>
+      <option value="purple">💜 Purple Theme</option>
+      <option value="orange">🧡 Orange Theme</option>
+      <option value="cyan">💠 Cyan Theme</option>
+      <option value="pink">🌸 Pink Theme</option>
+      <option value="gold">⭐ Gold Theme</option>
+      <option value="white">⚪ White Theme</option>
+      <option value="magenta">🟣 Magenta Theme</option>
+    </select>
+    <button class="theme-toggle" onclick="toggleLightMode()"><i class="fas fa-moon"></i></button>
+    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+  <div class="menu-items">
+    <div onclick="openLinkDirect('whatsapp')" class="menu-item"><i class="fab fa-whatsapp"></i> WhatsApp Channel</div>
+    <div onclick="openLinkDirect('telegram')" class="menu-item"><i class="fab fa-telegram"></i> Telegram Channel</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="title-section">
+    <h1 class="main-title">CUTE MARKHOR SIM DATABASE</h1>
+    <span class="version-badge">🔥 PREMIUM PRO 🔥</span>
+    <p class="subtitle">ADVANCED SIM DATABASE LOOKUP SYSTEM</p>
+  </div>
+
+  <div class="search-box">
+    <form id="searchForm">
+      <div class="input-group">
+        <input type="text" id="searchInput" class="search-input" placeholder="📱 Enter Mobile Number 3007867100" required>
+        <button type="submit" class="search-btn"><i class="fas fa-search"></i> SCAN DATABASE</button>
+      </div>
+      <p class="example-text">✅ Just enter number after country code • Example: <strong>3007867100</strong> (without +92, without 0)</p>
+    </form>
+  </div>
+
+  <div class="results-container" id="resultsContainer">
+    <div id="resultsContent"></div>
+  </div>
+
+  <div onclick="openLinkDirect('whatsapp')" style="text-decoration: none; cursor: pointer;">
+    <div class="whatsapp-banner">
+      <div class="banner-left">
+        <div class="banner-icon"><i class="fab fa-whatsapp"></i></div>
+        <div class="banner-info">
+          <h3><i class="fab fa-whatsapp"></i> JOIN OFFICIAL WHATSAPP</h3>
+          <p>Latest Updates • Premium Access • Support</p>
+        </div>
+      </div>
+      <div class="banner-btn"><i class="fab fa-whatsapp"></i> Join Now →</div>
+    </div>
+  </div>
+
+  <div onclick="openLinkDirect('telegram')" style="text-decoration: none; cursor: pointer;">
+    <div class="telegram-banner">
+      <div class="banner-left">
+        <div class="banner-icon"><i class="fab fa-telegram-plane"></i></div>
+        <div class="banner-info">
+          <h3><i class="fab fa-telegram"></i> JOIN OFFICIAL TELEGRAM</h3>
+          <p>HTML SCORE CODE</p>
+        </div>
+      </div>
+      <div class="banner-btn"><i class="fab fa-telegram"></i> Join Now →</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="credit-name">© HTML SCORE CODE 2026 | POWERED BY AZLAN HAFEEZ</div>
+  <div style="margin-top: 8px; font-size: 11px;">CUTE MARKHOR DATABASE - Premium SIM Database</div>
+</footer>
+
+<script>
+const themes = {
+  red: 'theme-red', blue: 'theme-blue', green: 'theme-green', purple: 'theme-purple',
+  orange: 'theme-orange', cyan: 'theme-cyan', pink: 'theme-pink', gold: 'theme-gold',
+  white: 'theme-white', magenta: 'theme-magenta'
+};
+
+function changeTheme(themeName) {
+document.body.className = '';
+  document.body.classList.add(themes[themeName]);
+  localStorage.setItem('selectedTheme', themeName);
+}
+
+function toggleLightMode() {
+  document.body.classList.toggle('light-mode');
+  const btn = document.querySelector('.theme-toggle i');
+  if (document.body.classList.contains('light-mode')) {
+    btn.className = 'fas fa-sun';
+    document.body.style.background = '#f5e8e9';
+  } else {
+    btn.className = 'fas fa-moon';
+    document.body.style.background = '';
+  }
+}
+
+const savedTheme = localStorage.getItem('selectedTheme');
+if (savedTheme && themes[savedTheme]) {
+  changeTheme(savedTheme);
+  document.getElementById('themeSelector').value = savedTheme;
+}
+
+function openLinkDirect(type) {
+  const whatsappLink = 'https://whatsapp.com/channel/0029Vb7M4E1H5JLrxabt943y';
+  const telegramLink = 'https://whatsapp.com/channel/0029Vb7M4E1H5JLrxabt943y';
+  let targetUrl = type === 'whatsapp' ? whatsappLink : telegramLink;
+  window.open(targetUrl, '_blank');
+}
+
+function closePopup() {
+  document.getElementById('welcomePopup').style.display = 'none';
+}
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
+
+document.addEventListener('click', function(event) {
+  const sidebar = document.getElementById('sidebar');
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+function cleanPhoneNumber(input) {
+  let cleaned = input.trim().replace(/\s+/g, '');
+  cleaned = cleaned.replace(/^(\+92|0092)/, '');
+  cleaned = cleaned.replace(/^0+/, '');
+  cleaned = cleaned.replace(/\D/g, '');
+  if (cleaned.length === 10 && cleaned.startsWith('3')) return cleaned;
+  if (cleaned.length > 10 && cleaned.startsWith('3')) return cleaned.slice(-10);
+  return cleaned;
+}
+
+// ONLY MY NEW API - IK KING API
+const API_URL = "https://famofc.site/api/database.php";
+
+$('#searchForm').on('submit', async function(e) {
+  e.preventDefault();
+  let rawInput = $('#searchInput').val().trim();
+  if (!rawInput) { 
+    alert('⚠️ Please enter a mobile number or CNIC'); 
+    return; 
+  }
+  
+  // Check if input is CNIC (13 digits) or phone number
+  const cleanCNIC = rawInput.replace(/\D/g, '');
+  const isCNIC = cleanCNIC.length === 13;
+  const isPhone = /^3\d{9}$/.test(cleanPhoneNumber(rawInput));
+  
+  let searchQuery = rawInput;
+  
+  if (!isCNIC && !isPhone) {
+    $('#resultsContainer').addClass('active');
+    $('#resultsContent').html(`<div class="error-message"><i class="fas fa-exclamation-triangle"></i><div>❌ Invalid Format!</div><div style="font-size: 13px; margin-top: 8px;">Please enter valid:<br>• Phone: 3XXXXXXXXX (10 digits)<br>• CNIC: 12345-1234567-1 (13 digits)</div></div>`);
+    return;
+  }
+  
+  $('#resultsContainer').addClass('active');
+  $('#resultsContent').html(`<div class="loading"><i class="fas fa-spinner fa-pulse"></i><div>🔍 Searching Database...<br>Query: ${rawInput}</div></div>`);
+  
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+    
+    const response = await fetch(`${API_URL}?q=${encodeURIComponent(rawInput)}`, {
+      method: 'GET',
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log("IK KING API Response:", data);
+    
+    // Process IK KING API response
+    if (data.success === true && data.data) {
+      const record = data.data.records && data.data.records.length > 0 ? data.data.records[0] : null;
+      
+      if (record && (record.full_name || record.phone || record.cnic)) {
+        displayData(record, rawInput, data.data.search_type);
+      } else {
+        $('#resultsContent').html(`<div class="error-message"><i class="fas fa-database"></i><div>❌ NO DATA FOUND</div><div style="font-size: 13px;">Query: ${rawInput} not found in database</div></div>`);
+      }
+    } else if (data.success === true && data.records && data.records.length > 0) {
+      displayData(data.records[0], rawInput);
+    } else {
+      $('#resultsContent').html(`<div class="error-message"><i class="fas fa-database"></i><div>❌ NO DATA FOUND</div><div style="font-size: 13px;">Query: ${rawInput} not found in database</div><div style="font-size: 11px; margin-top: 8px;">Error: ${data.error || 'No records found'}</div></div>`);
+    }
+    
+  } catch (error) {
+    console.error("API Error:", error);
+    $('#resultsContent').html(`<div class="error-message"><i class="fas fa-times-circle"></i><div>⚠️ CONNECTION ERROR</div><div style="font-size: 12px;">Unable to connect to IK KING API. Please check your connection.</div><div style="font-size: 11px; margin-top: 8px;">Error: ${error.message}</div></div>`);
+  }
+});
+
+function displayData(record, query, searchType = null) {
+  // Extract data from record
+  const name = record.full_name || record.FullName || record.Name || record.name || 'N/A';
+  const mobile = record.phone || record.Phone || record.Mobile || record.mobile || record.number || query;
+  const cnic = record.cnic || record.CNIC || record.NIC || record.nic || record.id_number || 'N/A';
+  const address = record.address || record.Address || record.full_address || 'N/A';
+  const father = record.father_name || record.FatherName || record.father || null;
+  const owner = record.owner_name || record.OwnerName || record.owner || null;
+  
+  // Format CNIC with dashes for better display
+  const formattedCNIC = cnic !== 'N/A' && cnic.length === 13 ? 
+    `${cnic.substr(0,5)}-${cnic.substr(5,7)}-${cnic.substr(12,1)}` : cnic;
+  
+  // Format phone number with 0 prefix for display
+  const formattedMobile = mobile !== 'N/A' && mobile.length === 10 && mobile.startsWith('3') ? 
+    `0${mobile}` : mobile;
+  
+  let html = `<div class="data-grid">
+    <div class="data-card"><div class="card-icon"><i class="fas fa-user"></i></div><div class="card-label">FULL NAME</div><div class="card-value">${escapeHtml(name)}</div></div>
+    <div class="data-card"><div class="card-icon"><i class="fas fa-phone-alt"></i></div><div class="card-label">MOBILE NUMBER</div><div class="card-value">${escapeHtml(formattedMobile)}</div></div>
+    <div class="data-card"><div class="card-icon"><i class="fas fa-id-card"></i></div><div class="card-label">CNIC NUMBER</div><div class="card-value">${escapeHtml(formattedCNIC)}</div></div>`;
+  
+  if (father && father !== 'N/A') {
+    html += `<div class="data-card"><div class="card-icon"><i class="fas fa-user-tie"></i></div><div class="card-label">FATHER'S NAME</div><div class="card-value">${escapeHtml(father)}</div></div>`;
+  }
+  
+  if (owner && owner !== 'N/A') {
+    html += `<div class="data-card"><div class="card-icon"><i class="fas fa-user-check"></i></div><div class="card-label">OWNER NAME</div><div class="card-value">${escapeHtml(owner)}</div></div>`;
+  }
+  
+  if (address && address !== 'N/A') {
+    html += `<div class="data-card" style="grid-column:1/-1;"><div class="card-icon"><i class="fas fa-map-marker-alt"></i></div><div class="card-label">ADDRESS</div><div class="card-value">${escapeHtml(address)}</div></div></div>`;
+  } else {
+    html += `</div>`;
+  }
+  
+  html += `<div class="api-info">
+    <div class="api-credit"><i class="fas fa-database"></i> <strong>Data Source:</strong> IK KING Premium Database</div>
+    <div class="api-credit" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> Real-time SIM Database | Live Lookup</div>
+    <div class="api-credit" style="margin-top: 5px; font-size: 11px;"><i class="fas fa-search"></i> Searched: ${escapeHtml(query)}</div>
+  </div>`;
+  
+  $('#resultsContent').html(html);
+}
+
+function escapeHtml(str) {
+  if (!str || str === 'N/A') return 'N/A';
+  return String(str).replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
+}
+
+$(document).ready(function() {
+  $('#searchInput').focus();
+});
+</script>
+</body>
+</html>
