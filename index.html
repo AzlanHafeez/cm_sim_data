@@ -740,8 +740,8 @@ footer {
     <h2 class="popup-title">CUTE MARKHOR DATABASE</h2>
     <p class="popup-text">Premium SIM Database • Fast & Secure<br>Join our Channel for Updates</p>
     <div class="popup-buttons">
-      <a href="https://whatsapp.com/channel/0029VbAPgH78PgsENxv1Ej43" onclick="openLinkDirect('whatsapp')" class="popup-btn join-wa"><i class="fab fa-whatsapp"></i> JOIN WHATSAPP</a>
-      <a href="t.me/cutemarkhor" onclick="openLinkDirect('telegram')" class="popup-btn join-tg"><i class="fab fa-telegram"></i> JOIN TELEGRAM</a>
+      <a href="#" onclick="openLinkDirect('whatsapp')" class="popup-btn join-wa"><i class="fab fa-whatsapp"></i> JOIN WHATSAPP</a>
+      <a href="#" onclick="openLinkDirect('telegram')" class="popup-btn join-tg"><i class="fab fa-telegram"></i> JOIN TELEGRAM</a>
       <button onclick="closePopup()" class="popup-btn cancel">CONTINUE TO APP</button>
     </div>
   </div>
@@ -863,8 +863,8 @@ if (savedTheme && themes[savedTheme]) {
 }
 
 function openLinkDirect(type) {
-  const whatsappLink = 'https://whatsapp.com/channel/0029Vb7M4E1H5JLrxabt943y';
-  const telegramLink = 'https://whatsapp.com/channel/0029Vb7M4E1H5JLrxabt943y';
+  const whatsappLink = 'https://whatsapp.com/channel/0029VbAPgH78PgsENxv1Ej43';
+  const telegramLink = 'https://t.me/cutemarkhor';
   let targetUrl = type === 'whatsapp' ? whatsappLink : telegramLink;
   window.open(targetUrl, '_blank');
 }
